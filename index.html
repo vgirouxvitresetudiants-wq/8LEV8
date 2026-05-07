@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8LEV8 — Soirée Entrepreneurs Québec</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0a0a0a;
+      color: #f0ead8;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2.5rem;
+      border-bottom: 0.5px solid rgba(196,163,104,0.2);
+      position: sticky;
+      top: 0;
+      background: #0a0a0a;
+      z-index: 100;
+    }
+    .nav-left { display: flex; align-items: center; gap: .9rem; }
+    .nav-logo { width: 42px; height: 42px; object-fit: contain; }
+    .logo { font-size: 1.45rem; font-weight: 600; letter-spacing: .18em; color: #c4a368; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      color: rgba(240,234,216,0.5);
+      text-decoration: none;
+      font-size: .7rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover { color: #c4a368; }
+    .hero { padding: 4rem 2.5rem 2rem; text-align: center; }
+    .tag { font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: #c4a368; margin-bottom: 1.2rem; }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: #f0ead8;
+      margin-bottom: .8rem;
+      font-family: Georgia, serif;
+    }
+    .gold-line { width: 50px; height: 1px; background: #c4a368; margin: 1.5rem auto; }
+    .event-box {
+      border: 0.5px solid rgba(196,163,104,0.35);
+      padding: 2rem;
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      text-align: center;
+    }
+    .ev-date { font-family: Georgia, serif; font-size: 2.8rem; font-weight: 300; color: #c4a368; }
+    .ev-month { font-size: .65rem; letter-spacing: .28em; text-transform: uppercase; color: rgba(196,163,104,0.65); margin-top: .2rem; }
+    .ev-title { font-family: Georgia, serif; font-size: 1.4rem; color: #f0ead8; margin: 1rem 0 .4rem; }
+    .ev-lieu { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(240,234,216,0.4); }
+    .prix-badge {
+      display: inline-block;
+      margin-top: .9rem;
+      padding: .4rem 1.2rem;
+      border: 0.5px solid rgba(196,163,104,0.4);
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #c4a368;
+    }
+    .section { padding: 3.5rem 2.5rem; border-top: 0.5px solid rgba(196,163,104,0.12); }
+    .sec-tag { font-size: .6rem; letter-spacing: .3em; text-transform: uppercase; color: #c4a368; text-align: center; margin-bottom: 2rem; }
+    .form-wrap { max-width: 560px; margin: 0 auto; }
+    label {
+      display: block;
+      font-size: .62rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(196,163,104,0.75);
+      margin: 1.2rem 0 .4rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      background: rgba(196,163,104,0.04);
+      border: 0.5px solid rgba(196,163,104,0.2);
+      padding: .75rem 1rem;
+      color: #f0ead8;
+      font-size: .88rem;
+      font-family: inherit;
+      outline: none;
+      border-radius: 1px;
+    }
+    input:focus, select:focus, textarea:focus { border-color: rgba(196,163,104,0.55); }
+    input::placeholder, textarea::placeholder { color: rgba(240,234,216,0.22); }
+    select option { background: #111; }
+    textarea { resize: vertical; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .payment-box {
+      background: rgba(196,163,104,0.05);
+      border: 0.5px solid rgba(196,163,104,0.25);
+      padding: 1.4rem 1.6rem;
+      margin-top: 1.8rem;
+    }
+    .pay-title { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: #c4a368; margin-bottom: .8rem; }
+    .pay-step { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: .6rem; }
+    .pay-num {
+      width: 20px; height: 20px;
+      border: 0.5px solid rgba(196,163,104,0.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem; color: #c4a368; flex-shrink: 0; margin-top: 1px;
+    }
+    .pay-text { font-size: .78rem; color: rgba(240,234,216,0.6); line-height: 1.5; }
+    .pay-text strong { color: rgba(240,234,216,0.9); font-weight: 500; }
+    .submit-btn {
+      width: 100%;
+      margin-top: 1.8rem;
+      padding: 1rem;
+      background: transparent;
+      border: 0.5px solid #c4a368;
+      color: #c4a368;
+      font-size: .68rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .submit-btn:hover { background: rgba(196,163,104,0.07); }
+    .submit-btn:disabled { opacity: .5; cursor: not-allowed; }
+    .err-msg { display: none; text-align: center; margin-top: .8rem; font-size: .75rem; color: rgba(220,100,100,0.85); }
+    .success { display: none; text-align: center; padding: 3rem 1rem; }
+    .success-icon { font-size: 2rem; color: #c4a368; margin-bottom: 1rem; }
+    .success-title { font-family: Georgia, serif; font-size: 1.6rem; color: #f0ead8; margin-bottom: .8rem; }
+    .success-sub { font-size: .8rem; color: rgba(240,234,216,0.5); line-height: 1.8; max-width: 420px; margin: 0 auto; }
+    .mission-text {
+      font-family: Georgia, serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 300;
+      line-height: 1.7;
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto;
+      color: rgba(240,234,216,0.88);
+    }
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(196,163,104,0.12);
+      margin-top: 3rem;
+    }
+    .pillar { background: #0a0a0a; padding: 1.8rem 1.4rem; text-align: center; }
+    .p-icon { font-size: 1.3rem; color: #c4a368; margin-bottom: .8rem; }
+    .p-title { font-family: Georgia, serif; font-size: 1rem; color: #f0ead8; margin-bottom: .4rem; }
+    .p-desc { font-size: .72rem; color: rgba(240,234,216,0.4); line-height: 1.6; }
+    .founders {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+    .fc { text-align: center; padding: 2rem 1.5rem; border: 0.5px solid rgba(196,163,104,0.15); }
+    .photo-circle {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(196,163,104,0.4);
+      margin: 0 auto 1.2rem;
+      overflow: hidden;
+      background: #111;
+    }
+    .photo-circle img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .f-role { font-size: .58rem; letter-spacing: .25em; text-transform: uppercase; color: #c4a368; margin-bottom: .4rem; }
+    .f-name { font-family: Georgia, serif; font-size: 1.3rem; color: #f0ead8; margin-bottom: .3rem; }
+    .f-origin { font-size: .7rem; color: rgba(240,234,216,0.38); letter-spacing: .06em; }
+    footer { padding: 2rem; text-align: center; border-top: 0.5px solid rgba(196,163,104,0.1); }
+    .footer-logo-img { width: 48px; height: 48px; object-fit: contain; margin: 0 auto .5rem; display: block; opacity: .5; }
+    .f-logo { font-size: 1.1rem; letter-spacing: .2em; color: rgba(196,163,104,0.45); }
+    .f-tag { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(240,234,216,0.2); margin-top: .4rem; }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 3rem 1.2rem 1.5rem; }
+      .section { padding: 2.5rem 1.2rem; }
+      .row2 { grid-template-columns: 1fr; }
+      .pillars { grid-template-columns: 1fr; }
+      .founders { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <img src="logo.png" alt="Logo 8LEV8" class="nav-logo">
+      <span class="logo">8LEV8</span>
+    </div>
+    <div class="nav-links">
+      <a href="#reservation">Réservation</a>
+      <a href="#mission">Mission</a>
+      <a href="#fondateurs">Fondateurs</a>
+    </div>
+  </nav>
+
+  <section id="reservation">
+    <div class="hero">
+      <p class="tag">Première édition — Québec</p>
+      <h1>L'élite entrepreneuriale<br>se rencontre</h1>
+      <div class="gold-line"></div>
+      <div class="event-box">
+        <div class="ev-date">26</div>
+        <div class="ev-month">Juin 2025</div>
+        <div class="ev-title">Soirée 8LEV8 — Première Édition</div>
+        <div class="ev-lieu">
+          <i class="ti ti-map-pin" style="font-size:13px;margin-right:5px;color:#c4a368"></i>
+          Centre des Congrès de Lévis, Québec
+        </div>
+        <div class="prix-badge">
+          <i class="ti ti-ticket" style="font-size:13px;margin-right:5px"></i>
+          15 $ par personne
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 0 2.5rem 3.5rem;">
+      <p class="sec-tag">Réservez votre place</p>
+      <div class="form-wrap">
+        <div id="form-area">
+          <form id="reg-form" action="https://formspree.io/f/mgodyggv" method="POST">
+            <input type="hidden" name="_subject" value="Nouvelle inscription — Soirée 8LEV8 26 juin">
+
+            <div class="row2">
+              <div>
+                <label>Prénom *</label>
+                <input type="text" name="prenom" id="f-prenom" placeholder="Votre prénom" required>
+              </div>
+              <div>
+                <label>Nom *</label>
+                <input type="text" name="nom" id="f-nom" placeholder="Votre nom" required>
+              </div>
+            </div>
+
+            <label>Courriel *</label>
+            <input type="email" name="email" id="f-email" placeholder="votre@courriel.com" required>
+
+            <label>Téléphone</label>
+            <input type="tel" name="telephone" placeholder="(418) 000-0000">
+
+            <div class="row2">
+              <div>
+                <label>Âge</label>
+                <input type="number" name="age" placeholder="Ex : 22" min="18" max="28">
+              </div>
+              <div>
+                <label>Ville / Région</label>
+                <input type="text" name="ville" placeholder="Québec, Beauce, Lévis...">
+              </div>
+            </div>
+
+            <label>Ton entreprise ou projet</label>
+            <input type="text" name="entreprise" placeholder="Nom + domaine d'activité">
+
+            <label>À quel stade es-tu?</label>
+            <select name="stade">
+              <option value="" disabled selected>Choisir...</option>
+              <option>Idée en développement</option>
+              <option>Démarrage (0–1 an)</option>
+              <option>En croissance (1–3 ans)</option>
+              <option>Établi (3 ans et +)</option>
+            </select>
+
+            <label>Qu'est-ce qui t'attire dans cet événement?</label>
+            <textarea name="motivation" rows="3" placeholder="Réseau, inspiration, rencontres..."></textarea>
+
+            <label>Comment as-tu entendu parler de 8LEV8?</label>
+            <select name="source">
+              <option value="" disabled selected>Choisir...</option>
+              <option>Instagram</option>
+              <option>Bouche à oreille</option>
+              <option>Un ami entrepreneur</option>
+              <option>Autre</option>
+            </select>
+
+            <div class="payment-box">
+              <div class="pay-title">
+                <i class="ti ti-building-bank" style="font-size:14px;margin-right:6px"></i>
+                Paiement — Virement Interac
+              </div>
+              <div class="pay-step">
+                <div class="pay-num">1</div>
+                <div class="pay-text">Remplis le formulaire et clique sur <strong>Confirmer mon inscription</strong> ci-dessous.</div>
+              </div>
+              <div class="pay-step">
+                <div class="pay-num">2</div>
+                <div class="pay-text">Envoie un virement Interac de <strong>15 $</strong> à <strong>jamesbelley2007@gmail.com</strong> avec ton nom complet en message.</div>
+              </div>
+              <div class="pay-step">
+                <div class="pay-num">3</div>
+                <div class="pay-text">Dès réception du paiement, ta place est confirmée — on te contacte par courriel.</div>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submit-btn">Confirmer mon inscription</button>
+            <div class="err-msg" id="form-err"></div>
+          </form>
+        </div>
+
+        <div class="success" id="success-area">
+          <div class="success-icon"><i class="ti ti-circle-check"></i></div>
+          <div class="success-title">Inscription reçue!</div>
+          <div class="success-sub">
+            Merci, <span id="s-name"></span>!<br><br>
+            Envoie maintenant un virement Interac de <strong style="color:#c4a368">15 $</strong>
+            à <strong style="color:#c4a368">jamesbelley2007@gmail.com</strong> avec ton nom en message.<br><br>
+            Ta place sera confirmée dès réception du paiement. À très bientôt!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="mission">
+    <p class="sec-tag">Notre mission</p>
+    <p class="mission-text">
+      Réunir la prochaine génération d'entrepreneurs du Québec âgés de 18 à 28 ans — pour bâtir des connexions authentiques, s'élever mutuellement et créer quelque chose de plus grand que soi.
+    </p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="p-icon"><i class="ti ti-users"></i></div>
+        <div class="p-title">Réseau</div>
+        <div class="p-desc">Des rencontres significatives entre jeunes entrepreneurs ambitieux de la région</div>
+      </div>
+      <div class="pillar">
+        <div class="p-icon"><i class="ti ti-flame"></i></div>
+        <div class="p-title">Élévation</div>
+        <div class="p-desc">S'entourer de personnes qui pensent plus grand et qui osent avancer</div>
+      </div>
+      <div class="pillar">
+        <div class="p-icon"><i class="ti ti-calendar-event"></i></div>
+        <div class="p-title">Événements</div>
+        <div class="p-desc">Des soirées exclusives conçues pour créer des opportunités durables</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fondateurs">
+    <p class="sec-tag">Les fondateurs</p>
+    <div class="founders">
+      <div class="fc">
+        <div class="photo-circle">
+          <img src="james.jpg" alt="James Belley, fondateur de 8LEV8">
+        </div>
+        <div class="f-role">Fondateur</div>
+        <div class="f-name">James Belley</div>
+        <div class="f-origin">Originaire de la Beauce</div>
+      </div>
+      <div class="fc">
+        <div class="photo-circle">
+          <img src="victor.png" alt="Victor Giroux, co-fondateur de 8LEV8">
+        </div>
+        <div class="f-role">Co-fondateur</div>
+        <div class="f-name">Victor Giroux</div>
+        <div class="f-origin">Originaire de Québec</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <img src="logo.png" alt="Logo 8LEV8" class="footer-logo-img">
+    <div class="f-logo">8LEV8</div>
+    <div class="f-tag">Mindset · Ambition · Élévation — Québec</div>
+  </footer>
+
+  <script>
+    document.getElementById('reg-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const errDiv = document.getElementById('form-err');
+      const prenom = document.getElementById('f-prenom').value.trim();
+      const nom = document.getElementById('f-nom').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      if (!prenom || !nom || !email) {
+        errDiv.textContent = 'Veuillez remplir les champs obligatoires (prénom, nom, courriel).';
+        errDiv.style.display = 'block';
+        return;
+      }
+      btn.textContent = 'Envoi en cours...';
+      btn.disabled = true;
+      errDiv.style.display = 'none';
+      try {
+        const data = new FormData(this);
+        const resp = await fetch('https://formspree.io/f/mgodyggv', {
+          method: 'POST', body: data, headers: { Accept: 'application/json' }
+        });
+        if (resp.ok) {
+          document.getElementById('form-area').style.display = 'none';
+          document.getElementById('success-area').style.display = 'block';
+          document.getElementById('s-name').textContent = prenom + ' ' + nom;
+        } else {
+          errDiv.textContent = 'Une erreur est survenue. Réessaie ou contacte-nous directement.';
+          errDiv.style.display = 'block';
+          btn.textContent = 'Confirmer mon inscription';
+          btn.disabled = false;
+        }
+      } catch (err) {
+        errDiv.textContent = "Impossible d'envoyer. Vérifie ta connexion et réessaie.";
+        errDiv.style.display = 'block';
+        btn.textContent = 'Confirmer mon inscription';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
